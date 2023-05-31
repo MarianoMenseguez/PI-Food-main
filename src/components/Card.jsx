@@ -14,7 +14,7 @@ export default function Card({
   return (
     <div className="card">
       <button onClick={() => onClose(id)}>X</button>
-      <Link to={`/detail/:${id}`}>
+      <Link to={`/detail/${id}`}>
         <h2> {name} </h2>
         <h2>{status}</h2>
         <h2>{species}</h2>

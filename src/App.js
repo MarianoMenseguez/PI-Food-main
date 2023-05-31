@@ -21,6 +21,9 @@ function App() {
             } else {
                window.alert('¡No hay personajes con este ID!');
             }
+         })
+         .catch( error => {
+            console.log(error);
          });
       }
       function onClose(id){
