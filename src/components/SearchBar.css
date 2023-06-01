@@ -1,4 +1,12 @@
 .search{
- 
-    border: 4px solid rgb(238, 247, 239);
+    padding: 5px;
+    border: 5px solid #b8c311;
+    box-shadow: 8px 12px 30px 1px #000;
+
+}
+.agregar {
+    background-color: yellow;
+  font-weight: bold;
+  border-radius: 25px;
+  box-shadow: 8px 12px 30px 1px #000;
 }
