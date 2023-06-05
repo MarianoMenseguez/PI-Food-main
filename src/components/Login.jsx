@@ -61,7 +61,7 @@ export default function Login({login}) {
 
   return (
     <div className="login">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <label>Email: </label>
         <input
           name="email"
