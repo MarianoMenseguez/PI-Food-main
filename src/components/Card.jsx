@@ -44,11 +44,12 @@ function Card(props) {
         <button onClick={handleFavorite}>🤍</button>
       )}
       <button onClick={() => onClose(id)}>X</button>
+      <h2>{id}</h2>
       <Link className="link" to={`/detail/${id}`}>
         <h2> {name} </h2>
-        {/* <h2>{status}</h2>
+        <h2>{status}</h2>
         <h2>{species}</h2>
-        <h2>{gender}</h2> */}
+        <h2>{gender}</h2> 
         <h2>{origin}</h2>
         <img src={image} alt={name} />
       </Link>
