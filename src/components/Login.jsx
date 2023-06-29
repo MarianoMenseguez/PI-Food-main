@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./Login.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import style from "../styles/Login.module.css";
 
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-export default function Login({login}) {
+const regexPassword =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,10}/;
+
+export default function Login({ login }) {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -14,7 +16,6 @@ export default function Login({login}) {
     email: "",
     password: "",
   });
-
   function validate(inputs) {
     const errors = {};
     if (!inputs.email) {
@@ -22,29 +23,44 @@ export default function Login({login}) {
     } else if (!inputs.password) {
       errors.password = "Debe haber un password";
     } else if (!regexEmail.test(inputs.email)) {
-      errors.email = "Debe haber un email valido";
+      errors.email = "Debe ser un email válido";
     } else if (!regexPassword.test(inputs.password)) {
-      errors.password = "Debe haber un password valido";
+      errors.password = "Debe ser un password válido";
     }
     return errors;
   }
 
-  function handleChang(event) {
+  function handleChange(e) {
     setInputs({
       ...inputs,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
         ...inputs,
-        [event.target.name]: event.target.value,
+        [e.target.name]: e.target.value,
       })
     );
   }
-  function handleSubmit(event) {
-    event.prevent.defautl();
+  function handleSubmit(e) {
+    e.preventDefault();
     const aux = Object.keys(errors);
+    // console.log("submit");
     if (aux.length === 0) {
+      //   // enviamos fafafafaf
+      //   setInputs({
+      //     email: "",
+      //     password: "",
+      //   });
+      //   setErrors({
+      //     email: "",
+      //     password: "",
+      //   });
+      //   return login(inputs);
+      // }
+      // return alert("Error");
+      // enviamos fafafafaf
+      login(inputs);
       setInputs({
         email: "",
         password: "",
@@ -53,37 +69,41 @@ export default function Login({login}) {
         email: "",
         password: "",
       });
-      return alert("OK");
+    } else {
+      return alert("Error");
     }
-    login(inputs)
-    return alert("ERROR");
   }
-
   return (
-    <div className="login">
-      <form onSubmit={handleSubmit} className="form">
+    <div className={style.container}>
+      <h4>BIENVENIDOS A:</h4>
+      <h3>BUCARAMANGA</h3>
+      <form className={style.form} onSubmit={handleSubmit}>
         <label>Email: </label>
         <input
           name="email"
           value={inputs.email}
-          onChange={handleChang}
-          placeholder="Escribe tu email"
+          onChange={handleChange}
+          placeholder=""
         ></input>
-        <p className="danger">{errors.email}</p>
+        <p className={style.danger}>{errors.email}</p>
         <label>Password: </label>
         <input
           name="password"
           value={inputs.password}
-          onChange={handleChang}
-          placeholder="Escribe tu constraseña "
+          onChange={handleChange}
+          placeholder=""
         ></input>
-        <p className="danger">{errors.password}</p>
+        <p className={style.danger}>{errors.password}</p>
         {Object.keys(errors).length === 0 ? (
-          <Link to="/home">
-            <button type="submit">Ingresar</button>
-          </Link>
+          <button type="submit">Ingresar</button>
         ) : null}
       </form>
     </div>
   );
 }
+/*
+Una etiqueta form que envolverá a todo el componente.
+Una etiqueta label junto con un input para el email.
+Una etiqueta label junto con un input para la password.
+Un button con el texto "Submit".
+*/

@@ -1,24 +1,32 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import "./NavBar.css";
+import style from '../styles/NavBar.module.css'
+import rick from '../img/rick.png'
+
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { resetCharacters } from "../redux/actions/actions";
 
 export default function NavBar({ onSearch, logout }) {
+  const dispatch = useDispatch()
   return (
-    <div className="nav">
-      <Link to="/Home">
-        <button className="btn-nav-home">Home</button>
+    <div className={style.nav}>
+      <div>
+        <img className={style.logo} src={rick} alt="rick logo"></img>
+      </div>
+      <Link to="/home">
+        <button onClick={()=> dispatch(resetCharacters())}>Home</button>
       </Link>
       <Link to="/about">
-        <button className="btn-nav" >About</button>
+        <button>About</button>
       </Link>
       <Link to="/favorites">
-        <button className="btn-nav" >Favorites</button>
+        <button>Favorites</button>
       </Link>
       <SearchBar onSearch={onSearch} />
-     
-        <button className="btn-nav" onClick={logout} >LogOut</button>
-      
+
+      <button onClick={logout}>LogOut</button>
     </div>
   );
 }

@@ -1,51 +1,70 @@
 import React from "react";
 import Card from "./Card";
-import { connect } from "react-redux";
-import { removeFav } from "../redux/actions/actions";
-import { filterCards, orderCards } from "../redux/actions/actions";
-import { useDispatch } from "react-redux";
-import { act } from "react-dom/test-utils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeFav,
+  orderCards,
+  filterCards,
+  reset,
+} from "../redux/actions/actions";
+import style from "../styles/Favorites.module.css";
 
-function Favorites({ myFavorites, onClose, removeFav }) {
+export default function Favorites({ onClose }) {
+  const { myFavorites } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const handleOrder = function (event) {
-    dispatch(orderCards(event.target.value));
-  };
-  const handleFilter = (event) => {
-    dispatch(filterCards(event.target.value));
-  };
-
   function closeFavorite(id) {
     onClose(id);
-    removeFav(id);
+    dispatch(removeFav(id));
+  }
+  // Male, Female, Genderless y unknown.
+  function handleOrder(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    dispatch(orderCards(value));
+  }
+
+  function handleFilter(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    dispatch(filterCards(value));
+  }
+
+  function resetBtton() {
+    dispatch(reset());
   }
   return (
     <div>
-      <div>
-        <select name="order" onChange={handleOrder}>
-          <option value="A">A</option>
-          <option value="D">D</option>
+      <div className={style.nav_favorites}>
+        <select onChange={handleOrder} name="order" defaultValue={"DEFAULT"}>
+          <option value="DEFAULT" disable="true">
+            Select Order
+          </option>
+          <option value="Ascendente">Ascendente</option>
+          <option value="Descendente">Descendente</option>
         </select>
-        <select name="filter" onChange={handleFilter}>
-          <option value="All">All</option>
+        <select onChange={handleFilter} name="filter" defaultValue={"DEFAULT"}>
+          <option value="DEFAULT" disable="true">
+            Select Filter
+          </option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Genderless">Genderless</option>
           <option value="unknown">unknown</option>
         </select>
+        <button onClick={resetBtton}>Reset</button>
       </div>
-      <div>
+      <div className={style.cards_container}>
         {myFavorites &&
-          myFavorites.map((element, index) => {
+          myFavorites.map((element) => {
             return (
               <Card
-                key={index}
+                key={element.id}
                 id={element.id}
                 name={element.name}
                 status={element.status}
                 species={element.species}
                 gender={element.gender}
-                origin={element.origin.name}
+                origin={element.origin}
                 image={element.image}
                 onClose={() => closeFavorite(element.id)}
               ></Card>
@@ -55,15 +74,15 @@ function Favorites({ myFavorites, onClose, removeFav }) {
     </div>
   );
 }
-function mapState(st) {
-  return {
-    myFavorites: st.myFavorites,
-  };
-}
-function mapDispatch(d) {
-  return {
-    removeFav: (id) => d(removeFav(id)),
-  };
-}
+// function mapState(st) {
+//   return {
+//     myFavorites: st.myFavorites,
+//   };
+// }
+// function mapDispatch(d) {
+//   return {
+//     removeFav: (id) => d(removeFav(id)),
+//   };
+// }
 
-export default connect(mapState, mapDispatch)(Favorites);
+// export default connect(mapState, mapDispatch)(Favorites);

@@ -1,31 +1,24 @@
+import style from "../styles/Card.module.css";
 import { Link } from "react-router-dom";
-import "./Card.css";
-import { connect } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../redux/actions/actions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function Card(props) {
-  const {
-    id,
-    name,
-    status,
-    species,
-    gender,
-    origin,
-    image,
-    onClose,
-    addFav,
-    removeFav,
-    myFavorites,
-  } = props;
+export default function Card(props) {
+  const { id, name, origin, image, onClose } = props;
+  const dispatch = useDispatch();
+  // dispatch(addFav({}))
   const [isFav, setIsFav] = useState(false);
+  const { myFavorites } = useSelector((s) => s);
+
   function handleFavorite() {
     if (isFav) {
       setIsFav(false);
-      removeFav(id);
+      dispatch(removeFav(id));
     } else {
       setIsFav(true);
-      addFav(props);
+      dispatch(addFav(props));
     }
   }
   useEffect(() => {
@@ -36,38 +29,44 @@ function Card(props) {
     });
   }, [myFavorites]);
 
+  function superClouse() {
+    onClose(id);
+    dispatch(removeFav(id));
+  }
+
   return (
-    <div className="card">
-      {isFav ? (
-        <button onClick={handleFavorite}>❤️</button>
-      ) : (
-        <button onClick={handleFavorite}>🤍</button>
-      )}
-      <button onClick={() => onClose(id)}>X</button>
-      <h2>{id}</h2>
-      <Link className="link" to={`/detail/${id}`}>
-        <h2> {name} </h2>
-        <h2>{status}</h2>
+    <div className={style.card}>
+      <div className={style.head_card}>
+        {isFav ? (
+          <button onClick={handleFavorite}>❤️</button>
+        ) : (
+          <button onClick={handleFavorite}>🤍</button>
+        )}
+        <button onClick={superClouse}>X</button>
+      </div>
+      <Link className={style.link} to={`/detail/${id}`}>
+        <h1>{name.slice(0,16)}</h1>
+        {/* <h2>{status}</h2>
         <h2>{species}</h2>
-        <h2>{gender}</h2> 
-        <h2>{origin}</h2>
+        <h2>{gender}</h2> */}
+        <h2>{origin && origin.slice(0,26)}</h2>
         <img src={image} alt={name} />
       </Link>
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    myFavorites: state.myFavorites
-  };
-}
+// function mapStateToProp(state) {
+//   return {
+//     myFavorites: state.myFavorites,
+//   };
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addFav: (ch) => dispatch(addFav(ch)),
-    removeFav: (id) => dispatch(removeFav(id)),
-  };
-}
+// function mapDispatchToProp(dispatch) {
+//   return {
+//     addFav: (ch) => dispatch(addFav(ch)),
+//     removeFav: (id) => dispatch(removeFav(id)),
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+// export default connect(mapStateToProp, mapDispatchToProp)(Card);
