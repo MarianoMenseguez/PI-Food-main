@@ -1,56 +1,50 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const { users, favorites} = require("./models");
-const character = require("./models/Character")
+const fs = require("fs");
+const path = require("path");
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
-// EJERCICIO 03
-// A la instancia de Sequelize le falta la URL de conexión. ¡Agrégala!
-// Recuerda pasarle la información de tu archivo '.env'.
-
-// URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
 const sequelize = new Sequelize(
-  // URL
-  // console.log(DB_USER)
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/rickandmorty`,
-  { logging: false, native: false }
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  }
 );
+const basename = path.basename(__filename);
 
-// EJERCICIO 05
-// Debajo de este comentario puedes ejecutar la función de los modelos.
-character(sequelize);
-users(sequelize);
-favorites(sequelize);
+const modelDefiners = [];
 
-// Ejercicio 06
-// ¡Relaciona tus modelos aquí abajo!
-const { User, Favorite } = sequelize.models;
+// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
+fs.readdirSync(path.join(__dirname, "/models"))
+  .filter(
+    (file) =>
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+  )
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, "/models", file)));
+  });
 
-User.belongsToMany(Favorite, { through: 'UserFavorite', timestamps: false });
-Favorite.belongsToMany(User, { through: 'UserFavorite', timestamps: false });
+// Injectamos la conexion (sequelize) a todos los modelos
+modelDefiners.forEach((model) => model(sequelize));
+// Capitalizamos los nombres de los modelos ie: product => Product
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
+sequelize.models = Object.fromEntries(capsEntries);
+
+// En sequelize.models están todos los modelos importados como propiedades
+// Para relacionarlos hacemos un destructuring
+const { Recipe, Diet } = sequelize.models;
+
+// Aca vendrian las relaciones
+// Product.hasMany(Reviews);
+Recipe.belongsToMany(Diet, { throught: "RecipeDiet" });
+Diet.belongsToMany(Recipe, { throught: "RecipeDiet" });
 
 module.exports = {
-  // User,
-  // Favorite,
-  ...sequelize.models,
-  conn: sequelize,
+  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
-
-/*
-sequelize: {
-    models:{
-        User: {
-            name
-            create: f()
-            fidOne: f()
-        },
-        Favorite: {
-            name
-            create: f()
-            fidOne: f()
-        }
-    },
-    define: f(),
-    sync: f()
-}
-*/
