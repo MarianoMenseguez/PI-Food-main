@@ -2,8 +2,6 @@
 .mainContainer{
     background: rgba(66, 31, 130, 0.227);
     box-shadow: 0 1px 10px 0 rgba(10, 20, 38, 0.523);
-    backdrop-filter: blur( 11px );
-    -webkit-backdrop-filter: blur( 11px );
     height: 40px;
     
     display: flex;
@@ -17,7 +15,7 @@
     background: none;
     border: none;
     color: rgb(9, 9, 9);
-    font-size: 20px;
+    font-size: 25px;
     
     cursor: pointer;
 }
@@ -36,7 +34,7 @@
     background: none;
     border: none;
     color: black;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
 
 }

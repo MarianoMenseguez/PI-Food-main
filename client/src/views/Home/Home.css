@@ -1,5 +1,5 @@
 body {
-    background-image: url("https://thumbs.dreamstime.com/z/plantilla-del-dise%C3%B1o-alimento-biol%C3%B3gico-fondo-en-colores-pastel-de-las-verduras-dibujo-vegetariano-detallado-la-comida-producto-114174132.jpg");
+    background-image: url("https://lavozdelmuro.net/wp-content/uploads/2016/10/portada-conservas-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -20,7 +20,7 @@ body {
 }
 
 .filters {
-    background-color: #eaffc2;
+    background-color: #12e70b;
     box-shadow: 0px 0px 15px 0px #1f1d36;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@ body {
 
 .refButton {
     font-family: "Merienda", cursive;
-    background-color: #eaffc2;
+    background-color: white;
     border: none;
     color: black;
     text-align: center;
@@ -40,9 +40,9 @@ body {
     margin-left: 15px;
     cursor: pointer;
     border-radius: 16%;
-    padding: 7px;
-    height: 40px;
-    margin-bottom: 10px;
+    padding: 15px;
+    height: 50px;
+    margin-bottom: 20px;
 }
 
 .refButton:hover {
@@ -59,6 +59,7 @@ body {
     border-radius: 10px;
     font-family: "Merienda", cursive;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .eachFilter:hover{

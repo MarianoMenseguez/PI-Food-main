@@ -5,15 +5,14 @@
     margin: 15px 0px 0px 100px;
     padding: 5px;
     border-radius: 20px;
-    box-shadow: 5px 2px 15px 0px rgb(195, 194, 194);
-    background-color: antiquewhite;
-    backdrop-filter: blur(200px);
+    box-shadow: 5px 2px 15px 0px rgb(133, 212, 131);
+    background-color: rgb(125, 248, 109);
     display: grid;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: stretch;
-    align-content: stretch;
+    align-items: center;
+    align-content: center;
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -64,7 +63,7 @@
   }
 
   .detailContainerUno{
-    position: relative;
+    position: center;
     border-radius: 20px;
     width: 1000px;
     height: 590px;
@@ -72,7 +71,7 @@
     
     right: 100px;
     padding: 5px;
-    font-size: 15px;
+    font-size: 18px;
     font-family: "Raleway", sans-serif;
     list-style: none;
   }

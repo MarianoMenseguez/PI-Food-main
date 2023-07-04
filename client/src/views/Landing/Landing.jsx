@@ -6,11 +6,11 @@ const Landing = () => {
     return(
         <div className="divContainer-landing">
             <div className="letters">
-                <h1>We know what you like !</h1>
+                <h1>Sabemos que te gusta !</h1>
             </div>
             <div id="button">
                 <Link to='/home'>
-                    <button>Take a View</button>
+                    <button>Echa un Vistazo</button>
                 </Link>
             </div>
         </div>

@@ -156,13 +156,12 @@ input {
     padding: 5px;
     border-radius: 10px;
     background-color: transparent;
-    backdrop-filter: blur(30px);
     font-family: "Bad Script", cursive;
     color: #52472c;
 }
 
 .buttonReturn{
-    width: 20px;
+    width: 30px;
 }
 
 .crossBtn{

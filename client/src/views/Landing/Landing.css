@@ -1,11 +1,11 @@
 .divContainer-landing{
     margin: 0;
     padding: 0;
-    background-image: url("../../assets/img/food-background-on-black-table-2021-08-30-09-52-19-utc.jpg");
-    background-size: cover;
+    background-image: url("../../assets/img/cooking.png");
+    background-size: center;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -14,18 +14,18 @@
 .letters{
   align-items: center;
   align-content: stretch;
-  height: 100vh;
+  height: 150vh;
   font-family: "Bad Script", cursive;
-  font-size: 25px;
+  font-size: 35px;
   color: #261f0f;
-  position: fixed;
+  position: left;
   top: 30%;
   left: 15%;
 }
 
 #button button{
     border: 5px solid;
-    background: #d9ad26;
+    background: rgb(14, 209, 14);
     border-color: #261f0f;
     font-size: 25px;
     font-family: "Bebas Neue", cursive;
