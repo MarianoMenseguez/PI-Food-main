@@ -1,4 +1,5 @@
 const { Router } = require('express');
+
 const axios = require("axios");
 const { Recipe } = require("../db.js");
 const { Diet } = require("../db.js");
@@ -102,7 +103,6 @@ const putDietInfo = async () => {
     return Diet.findAll();
 
 }
-
 module.exports = { 
     getApiInfo,
     getDBinfo, 

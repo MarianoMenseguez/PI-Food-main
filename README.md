@@ -49,7 +49,7 @@ npm -v
 
 Está permitido, **bajo tu responsabilidad**, actualizar las dependencias a versiones más actuales si lo deseas. Versiones mas actuales podrían presentar configuraciones diferentes respecto a las versiones en las que venimos trabajando durante el bootcamp.
 
-### **⛔️ Está rotundamente prohibido utilizar librerías externas para aplicar estilos a la SPA. Tendrás que utilizar CSS mediante algunas de las opciones vistas en el bootcamp (CSS, Legacy, Inline Styling, CSS Modules o Styled Components).**
+### **⛔️ Está rotundamente prohibido utilizar librerías externas para aplicar estilos a la SPA. Tendrás que utilizar CSS mediante algunas de las opciones vistas en el bootcamp (CSS puro, CSS Modules o Styled Components).**
 
 <br />
 
@@ -102,11 +102,7 @@ La idea de este proyecto es construir una aplicación web a partir de la API [**
 
 ---
 
-<div align="center">
-
 ## **📁 INSTRUCCIONES**
-
-</div>
 
 <br />
 
