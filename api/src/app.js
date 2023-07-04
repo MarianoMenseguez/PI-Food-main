@@ -39,3 +39,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 
 module.exports = server;
+
+
+//En resumen, este código configura y exporta un servidor de aplicaciones Express para la API. 
+//Se establecen los middlewares necesarios, las rutas y el manejo de errores. 
+//El servidor está listo para escuchar las solicitudes entrantes y proporcionar respuestas adecuadas según las rutas y controladores definidos en ./routes/index.js.

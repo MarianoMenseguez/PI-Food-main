@@ -76,37 +76,6 @@ export const recipeByName = (name) => {
 
 
 
-/* //FILTRADO POR TIPO DE DIETA
-export const filterRecipesByDiet = (payload) => {
-    return {
-        type: FILTER_BY_DIET, 
-        payload
-    }
-}
-
-//FILTRADO POR API O CREADO
-export const filterCreated = (payload) => {
-    return{
-        type: FILTER_BY_CREATED,
-        payload
-    }
-}
-
-//FILTRADO POR ORDEN ALFABETICO
-export const orderByName = (payload) => {
-    return{
-        type: ORDER_BY_NAME,
-        payload
-    }
-}
-
-//FILTRADO POR HEALTH SCORE
-export const orderByScore = (payload) => {
-    return{
-        type: ORDEN_BY_SCORE,
-        payload
-    }
-} */
 
 export const filters = (payload) => {
     return{
