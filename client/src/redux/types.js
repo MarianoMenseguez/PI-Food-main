@@ -7,3 +7,4 @@ export const LOADING = "LOADING";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const FILTERS = "FILTERS";
 export const DELETE_RECIPE = "DELETE_RECIPE";
+

@@ -1,4 +1,4 @@
-//SIMPLIFICO TODA LA INFO QUE ME VIENE DE LA API A LA INFO QUE YO NECESITO TRAER
+
 const simplifyContent = (recipes) => {
     let array = []
     

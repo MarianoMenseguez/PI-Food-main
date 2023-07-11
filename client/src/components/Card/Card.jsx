@@ -43,3 +43,8 @@ const Card = ({image, name, diets, id }) => {
 }
 
 export default Card;
+
+
+
+
+

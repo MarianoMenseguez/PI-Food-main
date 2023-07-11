@@ -5,7 +5,7 @@ import NavBar from './components/NavBar/NavBar.jsx';
 
 function App() {
 
-  //para generar el ternario de que muestre la navbar en todo viewport a excepcion de en el landing
+  
   const location = useLocation();
 
   return (
@@ -23,3 +23,6 @@ function App() {
 }
 
 export default App;
+
+
+

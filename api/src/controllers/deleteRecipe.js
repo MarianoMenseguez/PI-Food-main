@@ -1,4 +1,6 @@
-const { Recipe } = require('../../db');
+const { Recipe } = require("../db.js");
+
+
 
 const deleteRecipe = async (id) => {
     try {
@@ -24,4 +26,7 @@ const deleteRecipe = async (id) => {
     }
 }
 
-module.exports = deleteRecipe;
+module.exports = {
+    deleteRecipe
+}
+
