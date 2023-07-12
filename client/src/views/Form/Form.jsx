@@ -7,7 +7,7 @@ import validate from "../../validation/validation";
 import './Form.css'
 
 
-//NECESITO REPLANTEAR LAS VALIDACIONES YA QUE NO FUNCIONAN BIEN
+
 
 const Form = () => {
     

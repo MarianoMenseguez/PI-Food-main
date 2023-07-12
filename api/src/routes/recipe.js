@@ -11,7 +11,7 @@ const axios = require("axios");
 
 const router = Router();
 
-//ESTA RUTA FUNCIONA
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
         include: {
           model: Diet,
           attributes: ["name"],
-          through: { diets: [] },// mas seguridad aca
+          through: { diets: [] },
         },
       });
 
@@ -109,4 +109,3 @@ router.delete("/:id", async (req, res) => {
 });
 module.exports = router;
 
-// En resumen, este enrutador define varias rutas relacionadas con las recetas, incluyendo obtener información detallada de una receta, obtener todas las recetas o filtrar por nombre, crear una nueva receta y eliminar una receta según su id.
