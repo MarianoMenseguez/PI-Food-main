@@ -10,6 +10,9 @@ const NavBar = () => {
             <Link to='/form'>
                 <button className={style.newRecipe}>New Recipe</button>
             </Link>
+            <Link to='/formdiet'>
+                <button className={style.newRecipe}>New Diet</button>
+            </Link>
         </div>
     )
 }

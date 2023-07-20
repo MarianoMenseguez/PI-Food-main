@@ -11,6 +11,7 @@ const putDietInfo = async () => {
         "pescatarian",
         "fodmap friendly",
         "whole 30",
+       
     ];
     dietTypes.forEach((d) => {
         Diet.findOrCreate({

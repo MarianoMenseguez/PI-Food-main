@@ -2,6 +2,7 @@ export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPE_ID = 'GET_RECIPE_ID';
 export const GET_DIETS = 'GET_DIETS';
 export const POST_RECIPES = 'POST_RECIPES';
+export const POST_DIETS = 'POST_DIETS';
 export const GET_RECIPE_NAME = 'GET_RECIPE_NAME';
 export const LOADING = "LOADING";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";

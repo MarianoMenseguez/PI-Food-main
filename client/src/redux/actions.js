@@ -8,6 +8,7 @@ import {
         CLEAR_DETAIL,
         FILTERS,
         DELETE_RECIPE,
+        
 } from './types.js';
 
 export const getRecipes = () => {
@@ -60,6 +61,12 @@ export const postRecipes = (payload) => {
     }
 }
 
+export const postDiet = (payload) => {
+    return async function () {
+        const postDiet = await axios.post('http://localhost:3001/diets', payload)
+        return postDiet
+    }
+}
 
 export const recipeByName = (name) => {
     return async function (dispatch) {

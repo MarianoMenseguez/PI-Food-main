@@ -8,6 +8,7 @@ import {
     CLEAR_DETAIL,
     FILTERS,
     DELETE_RECIPE,
+    POST_DIETS,
 } from "./types.js";
 
 
@@ -54,6 +55,10 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case POST_RECIPES:
+            return{
+                ...state
+            }
+        case POST_DIETS:
             return{
                 ...state
             }

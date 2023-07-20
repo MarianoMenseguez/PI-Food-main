@@ -15,7 +15,6 @@ const SearchBar = () => {
 
     const handleSubmit = () =>{
         dispatch(recipeByName(name));
-        setName("");
     }
     return(
         <div className={style.SearchContainer}>

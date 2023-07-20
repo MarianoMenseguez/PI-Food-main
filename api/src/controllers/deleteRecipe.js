@@ -15,6 +15,7 @@ const deleteRecipe = async (id) => {
             }
         }
         await recipeDelete.destroy();
+        
         return {
             message:`La receta con el id ${id} se elimino correctamente`
         }

@@ -5,6 +5,7 @@ const validate = (form) => {
     
     const errors = {};
 
+    debugger;
     if (/[^a-zA-Z, ]/g.test(form.name.trim()) || validateNum.test(form.name)) {
         errors.name = "The name can not have symbols and numbers";
     } else if(!form.name.trim()){

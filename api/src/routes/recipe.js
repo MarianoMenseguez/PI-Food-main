@@ -46,28 +46,58 @@ router.get("/", async (req, res) => {
 
   try {
     if (name) {
-      // busca el nombre de la receta que coincida con el que me pasaron por query
-      const recipeByName = await Recipe.findAll({
+      // Busca el nombre de la receta que coincida con el que se pasó por query
+  
+      const recipeByName = [];
+      const recipeArrayByName = await Recipe.findAll({
+        include: {
+          model: Diet,
+          attributes: ["name"],
+        },
         where: {
           name: {
-            [Op.iLike]: `%${name}%`, // utilizar el operador iLike para una búsqueda sin distinción entre mayúsculas y minúsculas
+            [Op.iLike]: `%${name}%`, // Utilizar el operador iLike para una búsqueda sin distinción entre mayúsculas y minúsculas
           },
         },
       });
-      let nameFiltered = await getApiInfo();
-
-      nameFiltered = nameFiltered.filter((recipe) =>
-        recipe.name.toLowerCase().includes(name.toLowerCase())
-      );
-
-      let total = recipeByName.concat(nameFiltered);
-
-      if (!total.length) {
-        return res.status(404).json({ error: "Recipe not found" });
+  
+      for (let i = 0; i < recipeArrayByName.length; i++) {
+        const newAux = {
+          id: recipeArrayByName[i].id,
+          name: recipeArrayByName[i].name,
+          image: recipeArrayByName[i].image,
+          dishSummary: recipeArrayByName[i].dishSummary,
+          healthScore: recipeArrayByName[i].healthScore,
+          steps: recipeArrayByName[i].steps,
+          createdInDb: recipeArrayByName[i].createdInDb,
+        };
+  
+        const arrayAux = [];
+        recipeArrayByName[i].diets.map((e) => {
+          arrayAux.push(e.name);
+        });
+        newAux.diets = arrayAux;
+        recipeByName.push(newAux);
       }
-      return res.status(200).json(total);
+        let nameFiltered = await getApiInfo();
+              nameFiltered = nameFiltered.filter((recipe) =>
+                recipe.name.toLowerCase().includes(name.toLowerCase())
+              );
+      let total = recipeByName;
+  
+      if (recipeByName.length > 0) {
+        return res.status(200).json(total);
+      } else {
+        
+        total = recipeByName.concat(nameFiltered);
+  
+        if (!total.length) {
+          return res.status(404).json({ error: "Recipe not found" });
+        }
+  
+        return res.status(200).json(total);
+      }
     } else {
-      // sino, devolve el total de recetass
       let totalApiRecipes = await getApiInfo();
       let totalDbRecipes = await getDBinfo();
       let totalRecipes = totalApiRecipes.concat(totalDbRecipes);
@@ -92,6 +122,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 router.delete("/:id", async (req, res) => {
   let { id } = req.params;
 
@@ -108,4 +139,3 @@ router.delete("/:id", async (req, res) => {
   }
 });
 module.exports = router;
-
