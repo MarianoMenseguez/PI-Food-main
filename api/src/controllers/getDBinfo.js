@@ -23,6 +23,7 @@ const getDBinfo = async () => {
         }
 
         const arrayAux = []
+        
         getAllInfo[i].diets.map(e=>{
             arrayAux.push(e.name)
         })

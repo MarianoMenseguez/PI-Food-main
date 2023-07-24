@@ -5,7 +5,6 @@ const { postRecipe } = require("../controllers/postRecipe.js");
 const { getApiInfo } = require("../controllers/getApiInfo.js");
 const { getDBinfo } = require("../controllers/getDBinfo.js");
 const { Op } = require("sequelize");
-
 const { API_KEY } = process.env;
 const axios = require("axios");
 
@@ -113,12 +112,12 @@ router.post("/", async (req, res) => {
   try {
     const objRecipe = req.body;
     console.log(objRecipe);
-    if (!objRecipe) res.status(404).send("Missing info");
+    if (!objRecipe) res.status(400).send("Missing info");
     const newRecipe = await postRecipe(objRecipe);
 
     return res.status(200).json(newRecipe);
   } catch (error) {
-    return res.status(404).json(error.message);
+    return res.status(500).json(error.message);
   }
 });
 
@@ -128,14 +127,10 @@ router.delete("/:id", async (req, res) => {
 
   try {
     let recipeToDelete = await deleteRecipe(id);
+    return res.status(200).send(recipeToDelete);
 
-    if (recipeToDelete.error) {
-      res.status(400).json({ error: recipeToDelete.error });
-    } else {
-      res.status(200).json({ message: recipeToDelete.message });
-    }
   } catch (error) {
-    res.status(500).json({ error: "Error interno del servidor" });
+    return res.status(400).send(error.message);
   }
 });
 module.exports = router;

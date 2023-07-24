@@ -24,4 +24,3 @@ const Paginado = ({ recipesPerPage, allRecipes, paginado }) => {
 } 
 
 export default Paginado;
-

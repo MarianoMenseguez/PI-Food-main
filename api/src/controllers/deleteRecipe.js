@@ -1,30 +1,25 @@
-const { Recipe } = require("../db.js");
+const { Recipe, Diet } = require ("../db.js");
 
 
 
 const deleteRecipe = async (id) => {
-    try {
+   
         let recipeDelete = await Recipe.findOne({
-            where: {
-                id: id,
-            },
+            where: { id },
+            include: [Diet],
         });
+
         if (!recipeDelete){
-            return{
-                error:(`No se encontro ninguna receta con el id ${id}`)
-            }
+            throw new Error(`No se encontro ninguna receta con el id ${id}`);
         }
-        await recipeDelete.destroy();
-        
-        return {
-            message:`La receta con el id ${id} se elimino correctamente`
-        }
+
+        const elem = await recipeDelete.destroy({
+            where: { id: `${id}` }
+        });
+
+        return (`La receta con el id ${id} se elimino correctamente`);
             
-    } catch (error) {
-        return{
-            error: 'Error al intentar borrar la receta'
-        } 
-    }
+    
 }
 
 module.exports = {
