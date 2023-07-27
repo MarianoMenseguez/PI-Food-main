@@ -26,7 +26,7 @@ const Home = () => {
         diets: "All"
     })
     // ---------------------------PAGINADO-------------------------------------
-    const [flag, setFlag] = useState(true);
+    const [flag, setFlag] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
     const indexOfLastRecipe = currentPage * recipesPerPage; // 9

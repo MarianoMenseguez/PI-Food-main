@@ -8,9 +8,9 @@ import {
         CLEAR_DETAIL,
         FILTERS,
         DELETE_RECIPE,
-        
 } from './types.js';
 
+// TODAS LAS RECETAS
 export const getRecipes = () => {
     return async function (dispatch) {
         dispatch({ type: LOADING })
@@ -20,7 +20,7 @@ export const getRecipes = () => {
     };
 }
 
-
+//TRAEMOS RECETA POR ID
 export const getRecipeById = (id) =>{
     return async  function (dispatch) {
         const apiData = await axios.get(`http://localhost:3001/recipes/${id}`);
@@ -29,7 +29,7 @@ export const getRecipeById = (id) =>{
     }
 }
 
-
+//BORRAR RECETA POR ID
 export const deleteRecipeById = (id) => {
     return{
         type: DELETE_RECIPE,
@@ -43,7 +43,7 @@ export const clearDetail = () =>{
 }
 
 
-
+//TODAS LAS DIETAS
 export const getAllDiets = () => {
     return async function (dispatch) {
         dispatch({ type: LOADING })
@@ -52,15 +52,6 @@ export const getAllDiets = () => {
         dispatch({ type: GET_DIETS, payload: diets })
     }
 }
-
-
-export const postRecipes = (payload) => {
-    return async function () {
-        const postRecipe = await axios.post('http://localhost:3001/recipes', payload)
-        return postRecipe
-    }
-}
-
 export const postDiet = (payload) => {
     return async function () {
         const postDiet = await axios.post('http://localhost:3001/diets', payload)
@@ -68,6 +59,17 @@ export const postDiet = (payload) => {
     }
 }
 
+
+
+//CREAR RECETA
+export const postRecipes = (payload) => {
+    return async function () {
+        const postRecipe = await axios.post('http://localhost:3001/recipes', payload)
+        return postRecipe
+    }
+}
+
+//QUERY RECETA / manejar errores
 export const recipeByName = (name) => {
     return async function (dispatch) {
         try {
@@ -79,6 +81,7 @@ export const recipeByName = (name) => {
         }
     }
 }
+
 
 
 

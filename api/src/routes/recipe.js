@@ -109,6 +109,7 @@ router.get("/", async (req, res) => {
 
 
 router.post("/", async (req, res) => {
+  
   try {
     const objRecipe = req.body;
     console.log(objRecipe);
@@ -120,7 +121,6 @@ router.post("/", async (req, res) => {
     return res.status(500).json(error.message);
   }
 });
-
 
 router.delete("/:id", async (req, res) => {
   let { id } = req.params;

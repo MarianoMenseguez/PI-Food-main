@@ -2,13 +2,16 @@ const { Recipe, Diet } = require("../db.js");
 
 const postRecipe = async (objRecipe) => {
   try {
+    console.log(objRecipe)
     const { name, image, dishSummary, healthScore, steps, diets } = objRecipe;
     const recipe = {
       name,
       image,
       dishSummary,
       healthScore,
+      diets,
       steps: [steps],
+      
     };
     const createRecipe = await Recipe.create(recipe);
 
@@ -22,7 +25,7 @@ const postRecipe = async (objRecipe) => {
       await createRecipe.addDiets(diet[0].id);
     }
 
-    return Recipe.findAll({
+    return await Recipe.findAll({
       where: {
         name: recipe.name,
       },
@@ -30,6 +33,7 @@ const postRecipe = async (objRecipe) => {
         model: Recipe,
       },
     });
+
   } catch (error) {
     return error;
   }

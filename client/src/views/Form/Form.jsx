@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { postRecipes, getAllDiets } from "../../redux/actions";
-import validate from "../../validation/validation";
+import validate from "../../validation/validation.js";
 import './Form.css'
 
 
-
+//NECESITO REPLANTEAR LAS VALIDACIONES YA QUE NO FUNCIONAN BIEN
 
 const Form = () => {
     
@@ -223,8 +223,8 @@ const Form = () => {
                             </div>
                     </div>
                     <button
-                        type="submit"
                         disabled={errors.name || errors.dishSummary || errors.healthScore || errors.step || errors.image || errors.diets }
+                        type="submit"
                         className="button"
                     >Create Recipe</button>
                 </div>
